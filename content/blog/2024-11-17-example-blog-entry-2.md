@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Nuxt Decap / Student "
+title: "Portfolio Pelle Nackaerts"
 subtitle: Demo
 tags:
   - Tag 1

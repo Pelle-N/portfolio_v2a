@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Example - page 1
+title: Persoonlijke werken
 tags:
   - Tag A
 imagegallery:

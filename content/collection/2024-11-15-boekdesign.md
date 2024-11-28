@@ -1,5 +1,5 @@
 ---
-title: Example - collection B
+title: Boekdesign
 date: 2024-11-15T21:56:56.704Z
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
   fringilla nunc id tellus commodo, et suscipit nisl mattis. Duis venenatis

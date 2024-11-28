@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Example - blog entry 1
+title: Datavisualisatie
 subtitle: Subtitle example - blog entry 1
 tags:
   - Tag 1
