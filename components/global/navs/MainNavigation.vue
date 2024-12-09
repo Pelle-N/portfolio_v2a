@@ -1,27 +1,49 @@
 <template>
   <div>
-    <div v-for="(posts, folderName) in folders" :key="folderName" class="">
+    <div v-for="(posts, folderName) in folders" :key="folderName">
       <ul>
         <li v-for="post in posts" :key="post.slug" class="pb-1 md:pb-2 lg:pb-3">
-          <NuxtLink :to="post._path" class="font-bold text-4xl lg:text-6xl xl:text-6xl">
+          <NuxtLink
+            :to="post._path"
+            class="font-bold text-4xl lg:text-6xl xl:text-6xl"
+            :class="{ 'animate-ping': animateStates[post.slug] }"
+             @click.prevent="triggerAnimationAndNavigate(post.slug, post._path)"
+          >
             {{ post.title }}
           </NuxtLink>
         </li>
       </ul>
     </div>
-
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useAsyncData } from '#app';
+import { useAsyncData, useRouter } from '#app'; // Import router for navigation
 import menus from '../../../public/_data/menus.json'; // Import menus.json
 
 // Define a ref for storing grouped and sorted folders
 const folders = ref({});
+const animateStates = ref({});
+const router = useRouter(); // Use router for navigation
 
-// Use the constant path in queryContent
+// Trigger animation and delay navigation
+const triggerAnimationAndNavigate = (slug, path) => {
+  // Reset animation state for the post
+  animateStates.value[slug] = false;
+
+  setTimeout(() => {
+    // Trigger the animation
+    animateStates.value[slug] = true;
+
+    // After the animation completes, navigate to the new page
+    setTimeout(() => {
+      router.push(path);
+    }, 50); // Adjust to match the animation duration
+  }, 10); // Tiny delay to ensure the animation resets
+};
+
+// Fetch folders/posts using Nuxt's content query
 const { data: foldersPosts } = await useAsyncData('folders', () =>
   queryContent('/')
     .sort({ numbernavigation: -1 }) // Sorting in descending order (highest first)
@@ -29,20 +51,16 @@ const { data: foldersPosts } = await useAsyncData('folders', () =>
 );
 
 onMounted(() => {
-  // Filter out the 'tags' folder and posts where 'numbernavigation' is 0
+  // Filter and group posts
   let filteredPosts = (foldersPosts.value || []).filter(post => post._dir !== 'tags' && post.numbernavigation !== 0);
 
-  // Apply filtering based on menus.json and the 'collections' folder condition
   filteredPosts = filteredPosts.filter(post => {
     const folderName = post._dir;
-    
-    // Remove all files from 'collections' if 'excludefromnavigation' equals 2
+
     if (folderName === 'collections' && menus.submenu['excludefromnavigation'] === 2) {
-      console.log(`Excluding folder: ${folderName} because 'excludefromnavigation' is set to 2`);
       return false; // Exclude 'collections' folder
     }
 
-    // Other condition for excluding submenu
     if (menus.submenu['excludefromnavigation'] === 2) {
       return false; // Exclude based on the position value
     }
@@ -50,7 +68,6 @@ onMounted(() => {
     return true; // Include other folders
   });
 
-  // Group posts by folder name (_dir)
   const grouped = filteredPosts.reduce((acc, post) => {
     const folderName = post._dir; // Folder name is stored in _dir
     if (!acc[folderName]) {
@@ -65,7 +82,6 @@ onMounted(() => {
     grouped[folder].sort((a, b) => b.numbernavigation - a.numbernavigation);
   }
 
-  // Assign the grouped and sorted posts to the folders ref
   folders.value = grouped;
 });
 </script>
