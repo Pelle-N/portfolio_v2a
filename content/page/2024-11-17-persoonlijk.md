@@ -5,18 +5,26 @@ tags:
   - Tag A
 imagegallery:
   showgallery: true
-  carouselgrid: carousel
+  carouselgrid: grid
   galleryImages:
-    - /img/pierre-chatel-innocenti-amlcrqr6wns-unsplash.jpg
-    - /img/elimende-inagella-oj8ahnj18gc-unsplash.jpg
+    - /img/toel 1.jpg
+    - /img/toel 15.jpg
+    - /img/toel 17.jpg
+    - /img/toel 18.jpg
+    - /img/toel 2.jpg
+    - /img/toel 20.jpg
+    - /img/toel 21.jpg
+    - /img/toel 22.jpg
+    - /img/toel 5.jpg
+    - /img/toel 8.jpg
+    - /img/toel 19.jpg
   gallerytitle: ""
-thumbnail: /img/pixie-pixels-logo.png
+thumbnail: /img/toel 15.jpg
 date: 2024-11-17T14:29:57.955Z
 numbernavigation: 1
-layoutpage: layout2
+layoutpage: layout5
 description: Naast mijn MIND opleiding hou ik me in mijn vrije tijd ook graag
   creatief bezig. Ziehier enkele van mijn creaties.
 promoted: "0"
 ---
-(denk niet dat ik hier tekst ga zetten, dit is ook niet de main focus van de website maar wel leuk om erbij te zetten)
-doel: galerij van persoonlijke werken, moet niet hyper ingewikkeld zijn, gewoon om door te kunnen scrollen
+<3
