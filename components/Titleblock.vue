@@ -1,9 +1,9 @@
 <template>
     <div class="opacity-80 animate-fade animate-once animate-delay-[100ms]">
       <div
-      class="text-2xl font-bold">
+      class="text-2xl font-bold text-blue-900 md:text-pink-500">
       {{ settings.site_title }}</div>
-      <div class="text-sm opacity-80">
+      <div class="text-sm opacity-80 text-blue-900 md:text-pink-500">
       {{ settings.site_subtitle }}
       </div>
     </div>

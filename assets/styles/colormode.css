@@ -1,14 +1,14 @@
 /* Body element */
 body {
-    background-color: #F068A7;
+    background-color: #FFFFFF;
     color: #084C83;
     }
     .light-mode body {
-        background-color: #F068A7;
+        background-color: #FFFFFF;
         color: #084C83;
     }
     .el-drawer {
-        background-color: #F068A7;
+        background-color: #FFFFFF;
     }
     /* */
     .dark-mode body {
@@ -24,7 +24,7 @@ body {
       }
     /* */
     .gray-mode body {
-        background-color: #F068A7;
+        background-color: #ffdeed;
         color: #4f3130;
     }
     .gray-mode .backcolor{
