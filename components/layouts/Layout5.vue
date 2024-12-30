@@ -73,7 +73,7 @@
             ></textarea>
           </div>
           <button
-            type="submit"
+            type="submit!"
             class="w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-500"
           >
             Send Message
