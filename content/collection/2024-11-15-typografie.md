@@ -13,7 +13,7 @@ imagegallery:
   gallerytext: ""
 thumbnail: /img/mika-korhonen--xiyLfBYy_Q-unsplash.jpg
 date: 2024-11-15T12:58:59.910Z
-layout: layout5
+layout: layout4
 mainincluded: true
 tags:
   - Tag 1

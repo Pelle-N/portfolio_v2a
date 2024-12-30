@@ -5,7 +5,7 @@ tags:
   - Tag A
 imagegallery:
   showgallery: true
-  carouselgrid: grid
+  carouselgrid: carousel
   galleryImages:
     - /img/toel 1.jpg
     - /img/toel 15.jpg
@@ -22,9 +22,9 @@ imagegallery:
 thumbnail: /img/toel 15.jpg
 date: 2024-11-17T14:29:57.955Z
 numbernavigation: 1
-layoutpage: layout5
+layoutpage: layout4
 description: Naast mijn MIND opleiding hou ik me in mijn vrije tijd ook graag
-  creatief bezig. Ziehier enkele van mijn creaties.
+  creatief bezig.
 promoted: "0"
 ---
-<3
+<span class="text-white">&lt;3</span>

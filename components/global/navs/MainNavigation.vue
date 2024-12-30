@@ -5,7 +5,7 @@
         <li v-for="post in posts" :key="post.slug" class="pb-1 md:pb-2 lg:pb-3">
           <NuxtLink
             :to="post._path"
-            class="font-bold text-4xl lg:text-6xl xl:text-6xl text-pink-500 md:text-blue-900 animate-fade animate-once"
+            class="font-bold text-xl lg:text-3xl xl:text-4xl text-pink-500 md:text-blue-900 animate-fade animate-once"
             :class="{ 'animate-ping': animateStates[post.slug] }"
              @click.prevent="triggerAnimationAndNavigate(post.slug, post._path)"
           >
@@ -39,7 +39,7 @@ const triggerAnimationAndNavigate = (slug, path) => {
     // After the animation completes, navigate to the new page
     setTimeout(() => {
       router.push(path);
-    }, 50); // Adjust to match the animation duration
+    }, 30); // Adjust to match the animation duration
   }, 10); // Tiny delay to ensure the animation resets
 };
 

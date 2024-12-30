@@ -13,7 +13,7 @@ thumbnail: /img/uve-sanchez-sILW2r09wOk-unsplash.jpg
 tags:
   - Tag 1
 numbernavigation: 10
-layout: layout2
+layout: layout1
 mainincluded: true
 imagegallery:
   showgallery: true

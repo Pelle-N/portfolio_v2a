@@ -1,120 +1,111 @@
-
 <template>
-  <div class="layout5">
-    <ClientOnly>
-    <div class="relative max-h-screen overflow-hidden z-1">
-      <!-- Lazy loading applied to NuxtImg -->
-      <NuxtImg
-        v-if="data.thumbnail"
-        :src="data.thumbnail"
-        class="w-screen opacity-80 bg-cover"
-        :alt="`Thumbnail for ${data.title}`"
-        format="webp"
-        loading="lazy"
-        @load="imageLoaded = true"
-      />
-      
-      <div v-if="!imageLoaded" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-75">
-        <div class="spinner"></div>
+  <div class="about-page bg-gray-50 min-h-screen flex flex-col">
+    <!-- Hero Section -->
+    <header class="bg-pink-500 text-white py-10">
+      <div class="container mx-auto text-center">
+        <h1 class="text-4xl font-bold">{{ data.title }}</h1>
+      </div>
+    </header>
+
+     <!-- Drawer and navigation -->
+     <div class="absolute top-0 right-0 z-10 pr-5">
+        <Drawer/> 
       </div>
 
-      <div
-        class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 animate-fade animate-once animate-delay-[500ms]"
-        v-if="imageLoaded"
-      >
-        <div class="container p-4">
-          <div>
-            <h1 class="text-white text-4xl md:text-6xl lg:text-8xl font-bold">{{ data.title }}</h1>
-            <h1 v-if="data.subtitle" class="text-white opacity-80 pt-3 text-xl md:text-2xl lg:text-3xl font-bold pb-10">{{ data.subtitle }}</h1>
-          </div>
-          
-          <div>
-            <p v-if="data.author" class="text-white opacity-80 text-xs font-bold">{{ data.author }}</p>
-            <p class="text-white text-xs opacity-50 hover:opacity-100">Last update: {{ formatDate(data.date) }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Loading Drawer component -->
-    <div class="absolute top-0 right-0 z-10 pr-5">
-      <Drawer/> 
-    </div>
-
-    <!-- Main section -->
-    <div class="container mx-auto p-4 animate-fade animate-once animate-delay-[500ms]" v-if="imageLoaded">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-        <!-- First column -->
+    <!-- About Section -->
+    <section class="container mx-auto px-4 py-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <!-- Image Placeholder -->
         <div>
-          <h1 class="text-3xl md:text-3xl lg:text-6xl lg:mb-3 font-bold">{{ data.title }}</h1>
-          <h1 v-if="data.subtitle" class="opacity-80 text-xl md:text-2xl lg:text-3xl font-bold pb-10">{{ data.subtitle }}</h1>
-          <p class="text-lg md:text-2xl lg:text-xl pb-5 font-bold">{{ data.description }}</p>
-          
-          <div v-if="data.imagegallery && data.imagegallery.showgallery == true">
-            <ImageGallery/> 
-          </div>
+          <img
+            :src="data.thumbnail || '/placeholder.jpg'"
+            alt="About me image"
+            class="h-90"
+          />
         </div>
 
-        <!-- Second column -->
+        <!-- About Text -->
         <div>
-          <ContentRenderer :value="data"/>
+          <h2 class="text-3xl font-bold mb-4">Hey, Ik ben Pelle </h2>
+          <p class="text-lg text-gray-700 leading-relaxed mb-4">
+            {{ data.description }}
+          </p>
         </div>
       </div>
+    </section>
 
-      <!-- Second row -->
-      <div v-if="data.related_page">
-        <RelatedPages :relatedPages="data.related_page"/>
+    <!-- Contact Form Section -->
+    <section class="bg-white py-10">
+      <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-bold text-center mb-6 text-pink-500">Contact Me</h2>
+        <form
+          @submit.prevent="submitForm"
+          class="max-w-lg mx-auto bg-gray-100 shadow-md rounded-lg p-6"
+        >
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700 font-bold mb-2">Your Name</label>
+            <input
+              id="name"
+              v-model="formData.name"
+              type="text"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block text-gray-700 font-bold mb-2">Your Email</label>
+            <input
+              id="email"
+              v-model="formData.email"
+              type="email"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="message" class="block text-gray-700 font-bold mb-2">Your Message</label>
+            <textarea
+              id="message"
+              v-model="formData.message"
+              rows="4"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-500"
+          >
+            Send Message
+          </button>
+        </form>
       </div>
-
-      <!-- Link and published date -->
-      <div class="text-xs leading-3">
-        <hr />
-        <p class="text-xs opacity-50 hover:opacity-100 pb-2">Last update: {{ formatDate(data.date) }}</p>
-        <article v-if="data.tags" class="tags">
-          <li v-for="(item, index) in data.tags" :key="index" class="pt-2 text-xs opacity-50 hover:opacity-100">
-            <NuxtLink :to="`/tags/${item}`">{{ item }}</NuxtLink> <!-- Load NuxtLink -->
-          </li>
-        </article>
-      </div>
-    </div>
-
-    <!-- Loading the ShareButtons component -->
-    <ShareButtons/>
-
-    <!-- SEO metadata -->
-    <Title>{{ data.title }}</Title>
-    <Meta name="description" :content="data.description" />
-    <Meta name="tags" :content="data.tags.join(', ')" />
-    <Meta name="keywords" :content="data.tags.join(', ')" />
-    <Meta property="og:title" :content="data.title" />
-    <Meta property="og:description" :content="data.description" />
-    <Meta property="og:image" :content="data.thumbnail" />
-    <Meta property="og:url" :content="data.url" />
-    <Meta property="og:type" content="article" />
-  </ClientOnly>
+    </section>
   </div>
-
 </template>
 
-<script setup>
-import { ref } from 'vue';
-const imageLoaded = ref(false);
-
-defineProps(['data', 'formatDate']);
+<script>
+export default {
+  props: ["data"], // Assuming data is passed from the markdown file
+  data() {
+    return {
+      formData: {
+        name: "",
+        email: "",
+        message: "",
+      },
+    };
+  },
+  methods: {
+    submitForm() {
+      // Simple form submission logic; replace with actual email handling
+      alert(`Thanks, ${this.formData.name}! Your message has been sent.`);
+      this.formData = { name: "", email: "", message: "" };
+    },
+  },
+};
 </script>
 
 <style scoped>
-.spinner {
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid #fff;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+/* You can add any additional styles if needed */
 </style>

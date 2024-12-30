@@ -2,7 +2,7 @@
 <template>
   <div class="layout4">
     <ClientOnly>
-    <div class="relative max-h-screen overflow-hidden z-1">
+    <div class="relative h-60 overflow-hidden z-1">
       <!-- Lazy loading applied to NuxtImg -->
       <NuxtImg
         v-if="data.thumbnail"
@@ -24,7 +24,7 @@
       >
         <div class="container p-4">
           <div>
-            <h1 class="text-white text-4xl md:text-6xl lg:text-8xl font-bold">{{ data.title }}</h1>
+            <h1 class="text-white text-2xl md:text-4xl lg:text-6xl font-bold">{{ data.title }}</h1>
             <h1 v-if="data.subtitle" class="text-white opacity-80 pt-3 text-xl md:text-2xl lg:text-3xl font-bold pb-10">{{ data.subtitle }}</h1>
           </div>
           
@@ -46,24 +46,27 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
         <!-- First column -->
         <div>
-          <h1 class="text-3xl md:text-3xl lg:text-6xl lg:mb-3 font-bold">{{ data.title }}</h1>
+          
           <h1 v-if="data.subtitle" class="opacity-80 text-xl md:text-2xl lg:text-3xl font-bold pb-10">{{ data.subtitle }}</h1>
           <p class="text-lg md:text-2xl lg:text-xl pb-5 font-bold">{{ data.description }}</p>
           
-          <div v-if="data.imagegallery && data.imagegallery.showgallery == true">
-            <ImageGallery/> 
+          <div v-if="data.imagegallery && data.imagegallery.showgallery == true" class="carousel-container">
+            
           </div>
         </div>
 
         <!-- Second column -->
         <div>
           <ContentRenderer :value="data"/>
+          
         </div>
       </div>
 
       <!-- Second row -->
+      <ImageGallery2/>
       <div v-if="data.related_page">
         <RelatedPages :relatedPages="data.related_page"/>
+        
       </div>
 
       <!-- Link and published date -->
@@ -104,6 +107,11 @@ defineProps(['data', 'formatDate']);
 </script>
 
 <style scoped>
+
+.carousel-container {
+  margin-bottom: 3rem; /* Adjust the value as needed */
+}
+
 .spinner {
   border: 4px solid rgba(255, 255, 255, 0.3);
   border-top: 4px solid #fff;
