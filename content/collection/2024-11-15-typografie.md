@@ -2,8 +2,8 @@
 related_page:
   - 2024-11-17-example-page-a
 reftags:
-  - Tag A
-thumbnail: /img/mika-korhonen--xiyLfBYy_Q-unsplash.jpg
+  - Design
+thumbnail: /img/spread-1.png
 date: 2024-11-15T12:58:59.910Z
 layout: layout1
 mainincluded: true
@@ -12,11 +12,14 @@ imagegallery:
   showgallery: true
   carouselgrid: grid
   galleryImages:
-    - /img/parrish-freeman-Wi_Kun_mstU-unsplash.jpg
-    - /img/pierre-chatel-innocenti-dWBoc5jWYhY-unsplash.jpg
+    - /img/nieuwe-designs-1.png
+    - /img/nieuwe-designs-6.png
+    - /img/nieuwe-designs-2.png
+    - /img/nog-spread-2.png
+    - /img/spread-1.png
   gallerytext: ""
 tags:
-  - Tag 1
+  - Design
 collectionincluded: true
 numbernavigation: 11
 description: Datavisualisatie is een krachtige manier om complexe gegevens

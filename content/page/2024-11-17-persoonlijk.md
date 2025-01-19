@@ -2,7 +2,8 @@
 layout: default
 title: Persoonlijke werken
 tags:
-  - Tag A
+  - Kunst
+  - Illustratie
 imagegallery:
   showgallery: true
   carouselgrid: carousel
