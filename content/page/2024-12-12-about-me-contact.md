@@ -12,5 +12,4 @@ promoted: "0"
 ---
 Een 24-jarige MIND student die een groot deel van hun tijd spendeert op de LUCA campus in Brussel!
 Ik hou me graag bezig met illustratie, schilderen en design.
-
 Stuur met zeker een berichtje als je vragen hebt of wilt samenwerken!
